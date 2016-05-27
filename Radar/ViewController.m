@@ -15,6 +15,7 @@
 @property (strong, nonatomic) Squares *items;
 @property int tapCounter;
 
+
 +(NSString *) cellId;
 
 @end
@@ -50,7 +51,10 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Pulsan la celda %@", indexPath);
     
+    Square *s = [self.items objectFromRow:indexPath.row];
+    s.isVisible = true;
     
+    [collectionView reloadItemsAtIndexPaths:(@[indexPath])];
     
     //increase tapCounter
     self.tapCounter++;
