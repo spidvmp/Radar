@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC3E9E9E1CF84713002A2150 /* Square.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E9E9D1CF84713002A2150 /* Square.m */; };
+		DC3E9EA21CF84FDC002A2150 /* Squares.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3E9EA11CF84FDC002A2150 /* Squares.m */; };
 		DCB22FD51CF6F84C0025E4F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB22FD41CF6F84C0025E4F2 /* main.m */; };
 		DCB22FD81CF6F84C0025E4F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB22FD71CF6F84C0025E4F2 /* AppDelegate.m */; };
 		DCB22FDB1CF6F84C0025E4F2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB22FDA1CF6F84C0025E4F2 /* ViewController.m */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC3E9E9C1CF84713002A2150 /* Square.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Square.h; path = Model/Square.h; sourceTree = "<group>"; };
+		DC3E9E9D1CF84713002A2150 /* Square.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Square.m; path = Model/Square.m; sourceTree = "<group>"; };
+		DC3E9EA01CF84FDC002A2150 /* Squares.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Squares.h; path = Model/Squares.h; sourceTree = "<group>"; };
+		DC3E9EA11CF84FDC002A2150 /* Squares.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Squares.m; path = Model/Squares.m; sourceTree = "<group>"; };
 		DCB22FD01CF6F84C0025E4F2 /* Radar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Radar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB22FD41CF6F84C0025E4F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DCB22FD61CF6F84C0025E4F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -39,6 +45,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC3E9E9F1CF84718002A2150 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DC3E9EA01CF84FDC002A2150 /* Squares.h */,
+				DC3E9EA11CF84FDC002A2150 /* Squares.m */,
+				DC3E9E9C1CF84713002A2150 /* Square.h */,
+				DC3E9E9D1CF84713002A2150 /* Square.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		DCB22FC71CF6F84C0025E4F2 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +79,7 @@
 				DCB22FD71CF6F84C0025E4F2 /* AppDelegate.m */,
 				DCB22FD91CF6F84C0025E4F2 /* ViewController.h */,
 				DCB22FDA1CF6F84C0025E4F2 /* ViewController.m */,
+				DC3E9E9F1CF84718002A2150 /* Model */,
 				DCB22FDC1CF6F84C0025E4F2 /* Main.storyboard */,
 				DCB22FDF1CF6F84C0025E4F2 /* Assets.xcassets */,
 				DCB22FE11CF6F84C0025E4F2 /* LaunchScreen.storyboard */,
@@ -149,8 +167,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC3E9E9E1CF84713002A2150 /* Square.m in Sources */,
 				DCB22FDB1CF6F84C0025E4F2 /* ViewController.m in Sources */,
 				DCB22FD81CF6F84C0025E4F2 /* AppDelegate.m in Sources */,
+				DC3E9EA21CF84FDC002A2150 /* Squares.m in Sources */,
 				DCB22FD51CF6F84C0025E4F2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +286,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Radar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aaaa.Radar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -277,6 +298,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Radar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aaaa.Radar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -302,6 +324,7 @@
 				DCB22FE91CF6F84C0025E4F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
