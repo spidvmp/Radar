@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    //Define layout
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake(30, 30);
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    layout.minimumLineSpacing = 10.0;
+    layout.minimumInteritemSpacing = 10.0;
+    
+    
+    
+    //create controller and NavigationController
+    ViewController *vc = [[ViewController alloc] initWithCollectionViewLayout:layout];
+    
+    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = navC;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

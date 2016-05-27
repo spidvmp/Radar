@@ -18,10 +18,16 @@
 
 @implementation ViewController
 
+-(id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
+    if ( self = [super initWithCollectionViewLayout:layout]) {
+        _items = [[Squares alloc]init];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    self.items = [[Squares alloc] init];
+
     [self.items startWithSize:2];
     
     
