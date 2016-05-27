@@ -6,8 +6,15 @@
 //  Copyright © 2016 Vicente de Miguel. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import UIKit;
 
 @interface Squares : NSObject
+
+@property(strong, nonatomic) NSMutableArray *squares;
+@property(strong, nonatomic) NSArray *colors;
+
+-(NSUInteger) countOfSquares;
+-(void) startWithSize:(int) size;
+
 
 @end

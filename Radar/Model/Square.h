@@ -6,8 +6,15 @@
 //  Copyright © 2016 Vicente de Miguel. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+
+@import UIKit;
 
 @interface Square : NSObject
+
+@property (strong, nonatomic) UIColor *color;
+@property BOOL isVisible;
+
+-(id) initWithColor:(UIColor*) aColor;
+
 
 @end

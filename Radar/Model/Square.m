@@ -10,4 +10,14 @@
 
 @implementation Square
 
+
+-(id)initWithColor:(UIColor *)aColor {
+    if ( self = [super init]){
+        _isVisible = FALSE;
+        _color = aColor;
+    }
+    return self;
+    
+}
+
 @end

@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "Squares.h"
 
 @interface ViewController ()
+
+@property (strong, nonatomic) Squares *items;
 
 @end
 
@@ -17,6 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.items = [[Squares alloc] init];
+    [self.items startWithSize:2];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
