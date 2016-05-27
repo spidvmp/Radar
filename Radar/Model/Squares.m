@@ -33,6 +33,10 @@
     return arr;
 }
 
+-(Square *) objectFromRow:(NSUInteger) row {
+    return [self.squares objectAtIndex:row];
+}
+
 -(NSUInteger) countOfSquares {
     return self.squares.count;
 }
