@@ -23,14 +23,14 @@
     
     //Define layout
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake(30, 30);
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    layout.itemSize = CGSizeMake(60, 60);
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.minimumLineSpacing = 10.0;
     layout.minimumInteritemSpacing = 10.0;
     
     
     
-    //create controller and NavigationController
+    //create controller and NavigationController and launch
     ViewController *vc = [[ViewController alloc] initWithCollectionViewLayout:layout];
     
     UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:vc];
