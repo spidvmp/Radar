@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) Squares *items;
 @property int tapCounter;
+@property (strong, nonatomic) NSIndexPath *lastIndexPathCell;
 
 
 +(NSString *) cellId;
@@ -28,6 +29,7 @@
 -(id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
     if ( self = [super initWithCollectionViewLayout:layout]) {
         _items = [[Squares alloc]init];
+        _lastIndexPathCell = nil;
         _tapCounter = 0;
     }
     return self;
@@ -52,10 +54,32 @@
     NSLog(@"Pulsan la celda %@", indexPath);
     
     Square *s = [self.items objectFromRow:indexPath.row];
-    s.isVisible = true;
     
-    [collectionView reloadItemsAtIndexPaths:(@[indexPath])];
     
+    //Controll cells taped
+    if ( !s.isCompleted && indexPath != self.lastIndexPathCell){
+        //make cell visible
+        s.isVisible = true;
+        [collectionView reloadItemsAtIndexPaths:(@[indexPath])];
+        
+        //check if is the first cell of the pair
+        if ( self.lastIndexPathCell != nil) {
+            Square *last = [self.items objectFromRow:self.lastIndexPathCell.row];
+            if ( last.identify == s.identify) {
+                //completed
+                [self.items completed:@[indexPath, self.lastIndexPathCell]];
+                
+            } else {
+                //diferents cells
+                [self differentCellsInArray:@[self.lastIndexPathCell, indexPath]];
+                
+            }
+            self.lastIndexPathCell = nil;
+        } else {
+            self.lastIndexPathCell = indexPath;
+        }
+    
+    }
     //increase tapCounter
     self.tapCounter++;
     self.title = [NSString stringWithFormat:@"Intentos: %d",_tapCounter];
@@ -86,6 +110,21 @@
 }
 
 #pragma mark - utils
+-(void)differentCellsInArray:(NSArray *) indexes {
+    //put them face down
+    [self.items faceDown:indexes];
+    
+    //run this after 1 second
+    dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+    dispatch_after(delay, dispatch_get_main_queue(), ^(void){
+        [self.collectionView reloadItemsAtIndexPaths:indexes];
+    });
+
+    
+
+    
+    
+}
 -(void) registerCell {
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:[ViewController cellId]];
 }

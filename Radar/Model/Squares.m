@@ -41,6 +41,24 @@
     return self.squares.count;
 }
 
+-(void)completed:(NSArray *)indexes {
+    //change values to change
+    for (NSIndexPath *ip in indexes) {
+        Square *s = [self.squares objectAtIndex:ip.row];
+        s.isCompleted = TRUE;
+        [self.squares replaceObjectAtIndex:ip.row withObject:s];
+    }
+}
+
+-(void)faceDown:(NSArray *) indexes {
+    //change values to put face down
+    for (NSIndexPath *ip in indexes) {
+        Square *s = [self.squares objectAtIndex:ip.row];
+        s.isVisible = FALSE;
+        [self.squares replaceObjectAtIndex:ip.row withObject:s];
+    }
+}
+
 -(void) startWithSize:(int) size {
     //restart the array with new size of squares
     [self.squares removeAllObjects];
@@ -54,11 +72,15 @@
     
     //insert (size x size )/2, and insert 2 values with same color for each iteration
     int insert = ( size * size ) / 2;
+    int ident = 0;
     for ( int i=0; i< insert; i++ ){
         //create de square
-        Square *s = [[Square alloc]initWithColor:[self.colors objectAtIndex:i]];
+        Square *s = [[Square alloc]initWithColor:[self.colors objectAtIndex:i] andIdentify:ident];
         [arr addObject:s];
         [arr addObject:s];
+        
+        //increase identify
+        ident++;
         
     }
     

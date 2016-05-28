@@ -12,9 +12,11 @@
 @interface Square : NSObject
 
 @property (strong, nonatomic) UIColor *color;
+@property int identify;
 @property BOOL isVisible;
+@property BOOL isCompleted;
 
--(id) initWithColor:(UIColor*) aColor;
+-(id) initWithColor:(UIColor*) aColor andIdentify:(int) ident;
 
 
 @end
