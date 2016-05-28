@@ -7,6 +7,7 @@
 //
 
 @import UIKit;
+@class Square;
 
 @interface Squares : NSObject
 
@@ -15,6 +16,9 @@
 
 -(NSUInteger) countOfSquares;
 -(void) startWithSize:(int) size;
+-(void) completed:(NSArray *) indexes;
+-(void)faceDown:(NSArray *) indexes;
+-(Square *) objectFromRow:(NSUInteger) row;
 
 
 @end

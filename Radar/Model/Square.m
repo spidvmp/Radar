@@ -11,10 +11,12 @@
 @implementation Square
 
 
--(id)initWithColor:(UIColor *)aColor {
+-(id)initWithColor:(UIColor *)aColor andIdentify:(int)ident{
     if ( self = [super init]){
         _isVisible = FALSE;
+        _isCompleted = FALSE;
         _color = aColor;
+        _identify = ident;
     }
     return self;
     
