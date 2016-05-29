@@ -25,9 +25,12 @@
 -(NSArray*) createColors{
     NSMutableArray *arr = [[NSMutableArray alloc]init];
     
-    for (int red = 0.0f; red< 250.0f; red+=50){
-        UIColor *c = [UIColor colorWithRed:red/255.0f green:100 blue:100 alpha:1.0];
-        [arr addObject:c];
+    for (int i = 0; i < 300; i++){
+        
+            //UIColor *c = [UIColor colorWithRed:red/255.0f green:100 blue:blue/255 alpha:1.0];
+            UIColor *c = [UIColor colorWithHue:[self randomFloat] saturation:1.0 brightness:[self randomFloat] alpha:[self randomFloat]];
+            [arr addObject:c];
+        
     }
         
     return arr;
@@ -84,8 +87,23 @@
         
     }
     
+    //generaterandom order
+    for(int i=0; i<arr.count; i++){
+        int rnd = (arc4random() % arr.count);
+        //swap i position and rnd position
+        Square *s = [arr objectAtIndex:i];
+        [arr replaceObjectAtIndex:i withObject:[arr objectAtIndex:rnd]];
+        [arr replaceObjectAtIndex:rnd withObject:s];
+        
+    }
     
     return arr;
 }
+
+
+-(float) randomFloat{
+    return (arc4random() % 255) / 255.0f;
+}
+
 
 @end

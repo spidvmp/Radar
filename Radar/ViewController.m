@@ -44,7 +44,7 @@
     [self registerCell];
     
     //starts with 2x2
-    [self.items startWithSize:2];
+    [self.items startWithSize:4];
     
     
 }
