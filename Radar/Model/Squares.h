@@ -19,6 +19,7 @@
 -(void) completed:(NSArray *) indexes;
 -(void)faceDown:(NSArray *) indexes;
 -(Square *) objectFromRow:(NSUInteger) row;
+-(BOOL) checkIfIsFinished;
 
 
 @end

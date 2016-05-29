@@ -99,6 +99,17 @@
     return arr;
 }
 
+-(BOOL) checkIfIsFinished{
+    
+    //chekc if the layout is finished
+    for ( int i=0; i<self.squares.count; i++) {
+        if ( ![self.squares[i] isCompleted] )
+            return NO;
+    }
+    
+    return YES;
+}
+
 
 -(float) randomFloat{
     return (arc4random() % 255) / 255.0f;

@@ -104,6 +104,17 @@
     self.tapCounter++;
     self.title = [NSString stringWithFormat:@"Attemps: %d", self.tapCounter];
     
+    if ( [self.items checkIfIsFinished]) {
+        //show congratulations message
+        NSString *msg = [NSString stringWithFormat:@"You solved the puzzle in %d attemps", self.tapCounter];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Congratulations" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self reset:nil];
+        }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
 }
 
 #pragma mark - CollectionView DataSource
