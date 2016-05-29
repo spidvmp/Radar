@@ -116,6 +116,24 @@
     return [self.items countOfSquares];
 }
 
+#pragma mark - UIPickerView DataSource
+-(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return 8;
+}
+-(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    NSInteger s = 2 + ( row * 2);
+    return [NSString stringWithFormat:@"%ld x %ld", s, s];
+}
+-(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+#pragma mark - PickerView Delegate
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    //get new size
+    NSInteger s = 2 + ( row * 2 );
+}
+
 #pragma mark - utils
 -(void)differentCellsInArray:(NSArray *) indexes {
     //put them face down
@@ -143,6 +161,10 @@
 
 -(void) changeSize:(id)sender {
     //if change size, then new game, reset with the new size
+    UIPickerView *picker = [[UIPickerView alloc]init];
+    picker.delegate = self;
+    picker.dataSource = self;
+    [self.view addSubview:picker];
     
     
 }
