@@ -62,6 +62,7 @@
     self.navigationItem.rightBarButtonItem = sizeButton;
     
     CGRect fr = self.picker.frame;
+    fr.size.width = self.view.frame.size.width;
     fr.origin.y = self.view.frame.size.height - fr.size.height;
     self.picker.frame = fr;
     self.picker.delegate = self;
@@ -107,12 +108,14 @@
     if ( [self.items checkIfIsFinished]) {
         //show congratulations message
         NSString *msg = [NSString stringWithFormat:@"You solved the puzzle in %d attemps", self.tapCounter];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Congratulations" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Congratulations" message:msg preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self reset:nil];
         }];
         [alert addAction:ok];
+        
         [self presentViewController:alert animated:YES completion:nil];
+        
     }
     
 }
