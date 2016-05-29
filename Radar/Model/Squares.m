@@ -26,8 +26,7 @@
     NSMutableArray *arr = [[NSMutableArray alloc]init];
     
     for (int i = 0; i < 300; i++){
-        
-            //UIColor *c = [UIColor colorWithRed:red/255.0f green:100 blue:blue/255 alpha:1.0];
+
             UIColor *c = [UIColor colorWithHue:[self randomFloat] saturation:1.0 brightness:[self randomFloat] alpha:[self randomFloat]];
             [arr addObject:c];
         
@@ -62,19 +61,19 @@
     }
 }
 
--(void) startWithSize:(int) size {
+-(void) startWithSize:(NSInteger) size {
     //restart the array with new size of squares
     [self.squares removeAllObjects];
     self.squares = [self createArrayWithSize:size];
     
 }
 
--(NSMutableArray *) createArrayWithSize:(int) size {
+-(NSMutableArray *) createArrayWithSize:(NSInteger) size {
     //size is always a par value
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     
     //insert (size x size )/2, and insert 2 values with same color for each iteration
-    int insert = ( size * size ) / 2;
+    NSInteger insert = ( size * size ) / 2;
     int ident = 0;
     for ( int i=0; i< insert; i++ ){
         //create de square

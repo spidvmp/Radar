@@ -15,7 +15,10 @@
 @property (strong, nonatomic) Squares *items;
 @property int tapCounter;
 @property (strong, nonatomic) NSIndexPath *lastIndexPathCell;
-@property int size;
+@property NSInteger size;
+@property (strong, nonnull) UIPickerView *picker;
+@property BOOL showingPicker;
+
 
 
 +(NSString *) cellId;
@@ -32,7 +35,10 @@
         _items = [[Squares alloc]init];
         _lastIndexPathCell = nil;
         _tapCounter = 0;
-        _size = 4;
+        _size = 2;
+        _picker = [[UIPickerView alloc]init];
+        _showingPicker = NO;
+        
     }
     return self;
 }
@@ -46,7 +52,7 @@
     [self registerCell];
     
     //starts with 4x4
-    [self.items startWithSize:self.size];
+    [self.items startWithSize: self.size];
     
     //reset button
     UIBarButtonItem *resetButton = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(reset:)];
@@ -54,6 +60,13 @@
     //size button
     UIBarButtonItem *sizeButton = [[UIBarButtonItem alloc] initWithTitle:@"Change Size" style:UIBarButtonItemStylePlain target:self action:@selector(changeSize:)];
     self.navigationItem.rightBarButtonItem = sizeButton;
+    
+    CGRect fr = self.picker.frame;
+    fr.origin.y = self.view.frame.size.height - fr.size.height;
+    self.picker.frame = fr;
+    self.picker.delegate = self;
+    self.picker.dataSource = self;
+    self.picker.backgroundColor = [UIColor grayColor];
     
     
 }
@@ -131,7 +144,8 @@
 #pragma mark - PickerView Delegate
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     //get new size
-    NSInteger s = 2 + ( row * 2 );
+    self.size = 2 + ( row * 2 );
+
 }
 
 #pragma mark - utils
@@ -150,9 +164,10 @@
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:[ViewController cellId]];
 }
 
+#pragma mark - Actions
 -(void) reset:(id) sender {
     //reset the game
-    [self.items startWithSize:self.size];
+    [self.items startWithSize: self.size];
     self.tapCounter = 0;
     self.title = [NSString stringWithFormat:@"Attemps: %d",self.tapCounter];
     [self.collectionView reloadData];
@@ -160,14 +175,25 @@
 }
 
 -(void) changeSize:(id)sender {
-    //if change size, then new game, reset with the new size
-    UIPickerView *picker = [[UIPickerView alloc]init];
-    picker.delegate = self;
-    picker.dataSource = self;
-    [self.view addSubview:picker];
-    
+    //check if picker exist. If exist, we are changing size
+    if ( self.showingPicker) {
+        [self.navigationItem.rightBarButtonItem setTitle:@"Change Size"];
+        [self.picker removeFromSuperview];
+        self.showingPicker = NO;
+        
+        //reload layout
+        [self reset:nil];
+        
+    } else {
+        
+        [self.navigationItem.rightBarButtonItem setTitle:@"Change it!"];
+        
+        [self.view addSubview:self.picker];
+        self.showingPicker = YES;
+    }
     
 }
+
 
 #pragma mark - Memory
 - (void)didReceiveMemoryWarning {

@@ -15,7 +15,7 @@
 @property(strong, nonatomic) NSArray *colors;
 
 -(NSUInteger) countOfSquares;
--(void) startWithSize:(int) size;
+-(void) startWithSize:(NSInteger) size;
 -(void) completed:(NSArray *) indexes;
 -(void)faceDown:(NSArray *) indexes;
 -(Square *) objectFromRow:(NSUInteger) row;
