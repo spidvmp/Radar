@@ -15,6 +15,7 @@
 @property (strong, nonatomic) Squares *items;
 @property int tapCounter;
 @property (strong, nonatomic) NSIndexPath *lastIndexPathCell;
+@property int size;
 
 
 +(NSString *) cellId;
@@ -31,6 +32,7 @@
         _items = [[Squares alloc]init];
         _lastIndexPathCell = nil;
         _tapCounter = 0;
+        _size = 4;
     }
     return self;
 }
@@ -39,22 +41,24 @@
     [super viewDidLoad];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
-    self.title = [NSString stringWithFormat:@"Intentos: %d",_tapCounter];
+    self.title = [NSString stringWithFormat:@"Intentos: %d",self.tapCounter];
     
     [self registerCell];
     
-    //starts with 2x2
-    [self.items startWithSize:4];
+    //starts with 4x4
+    [self.items startWithSize:self.size];
+    
+    //reset button
+    UIBarButtonItem *resetButton = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(reset:)];
+    self.navigationItem.leftBarButtonItem = resetButton;
     
     
 }
 
 #pragma mark - CollectionView Delegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Pulsan la celda %@", indexPath);
     
     Square *s = [self.items objectFromRow:indexPath.row];
-    
     
     //Controll cells taped
     if ( !s.isCompleted && indexPath != self.lastIndexPathCell){
@@ -82,7 +86,7 @@
     }
     //increase tapCounter
     self.tapCounter++;
-    self.title = [NSString stringWithFormat:@"Intentos: %d",_tapCounter];
+    self.title = [NSString stringWithFormat:@"Intentos: %d", self.tapCounter];
     
 }
 
@@ -119,14 +123,19 @@
     dispatch_after(delay, dispatch_get_main_queue(), ^(void){
         [self.collectionView reloadItemsAtIndexPaths:indexes];
     });
-
-    
-
-    
-    
 }
+
 -(void) registerCell {
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:[ViewController cellId]];
+}
+
+-(void) reset:(id) sender {
+    //reset the game
+    [self.items startWithSize:self.size];
+    self.tapCounter = 0;
+    self.title = [NSString stringWithFormat:@"Intentos: %d",self.tapCounter];
+    [self.collectionView reloadData];
+    
 }
 
 #pragma mark - Memory
