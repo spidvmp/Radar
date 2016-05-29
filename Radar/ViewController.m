@@ -41,7 +41,7 @@
     [super viewDidLoad];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
-    self.title = [NSString stringWithFormat:@"Intentos: %d",self.tapCounter];
+    self.title = [NSString stringWithFormat:@"Attemps: %d",self.tapCounter];
     
     [self registerCell];
     
@@ -51,6 +51,9 @@
     //reset button
     UIBarButtonItem *resetButton = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(reset:)];
     self.navigationItem.leftBarButtonItem = resetButton;
+    //size button
+    UIBarButtonItem *sizeButton = [[UIBarButtonItem alloc] initWithTitle:@"Change Size" style:UIBarButtonItemStylePlain target:self action:@selector(changeSize:)];
+    self.navigationItem.rightBarButtonItem = sizeButton;
     
     
 }
@@ -86,7 +89,7 @@
     }
     //increase tapCounter
     self.tapCounter++;
-    self.title = [NSString stringWithFormat:@"Intentos: %d", self.tapCounter];
+    self.title = [NSString stringWithFormat:@"Attemps: %d", self.tapCounter];
     
 }
 
@@ -133,8 +136,14 @@
     //reset the game
     [self.items startWithSize:self.size];
     self.tapCounter = 0;
-    self.title = [NSString stringWithFormat:@"Intentos: %d",self.tapCounter];
+    self.title = [NSString stringWithFormat:@"Attemps: %d",self.tapCounter];
     [self.collectionView reloadData];
+    
+}
+
+-(void) changeSize:(id)sender {
+    //if change size, then new game, reset with the new size
+    
     
 }
 
